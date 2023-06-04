@@ -20,8 +20,12 @@ public class AnimalService {
         return this.animalRepository.save(animal);
     }
 
-    public List<Animal> findAllAnimals() {
+    public List<Animal> findAll() {
         return this.animalRepository.findAll();
+    }
+
+    public List<Animal> findAllByOwner(String owner) {
+        return this.animalRepository.findAllByOwner(owner);
     }
 
 }
