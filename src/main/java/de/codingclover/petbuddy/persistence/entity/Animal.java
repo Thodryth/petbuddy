@@ -4,53 +4,25 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
 
+import de.codingclover.petbuddy.controller.dto.AnimalDTO;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
-public class Animal implements AnimalInterface {
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "name", "owner", "birthday" }))
+public class Animal extends AnimalDTO implements AnimalInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-
-    private String breed;
-
-    private String species;
-
-    private LocalDate dateOfBirth;
-
-    @Override
     public Period getAge() {
         var now = LocalDate.now(Clock.systemDefaultZone());
-        return Period.between(dateOfBirth, now);
-    }
-
-    @Override
-    public LocalDate getDateOfBirth() {
-        return this.dateOfBirth;
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
-    public String getBreed() {
-        return this.breed;
-    }
-
-    @Override
-    public Long getId() {
-        return this.id;
-    }
-
-    @Override
-    public String getSpecies() {
-        return this.species;
+        return Period.between(this.getBirthday(), now);
     }
 
 }
