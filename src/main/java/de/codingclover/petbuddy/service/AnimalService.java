@@ -12,7 +12,7 @@ public class AnimalService {
 
     private AnimalRepository animalRepository;
 
-    AnimalService(AnimalRepository animalRepository) {
+    public AnimalService(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
     }
 

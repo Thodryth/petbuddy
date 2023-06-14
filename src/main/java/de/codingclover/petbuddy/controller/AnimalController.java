@@ -23,7 +23,7 @@ public class AnimalController {
 
     private ObjectMapper animalDtoMapper;
 
-    AnimalController(AnimalService animalService, ObjectMapper animalDtoMapper) {
+    public AnimalController(AnimalService animalService, ObjectMapper animalDtoMapper) {
         this.animalService = animalService;
         this.animalDtoMapper = animalDtoMapper;
     }
